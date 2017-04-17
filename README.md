@@ -14,7 +14,7 @@ x*: indicates that x appears 0 or more times.<br>
 #### Lexical Elements:
 There are four types of terminal elements<br>
 keyword: **‘BEGIN’** | **‘END’** | **‘READ’** | **‘WRITE’**<br>
-symbol: **‘(‘** | **‘)’** | **‘,’** | **‘;’** | **‘+’** | **‘-‘**<br>
+symbol: **‘(‘** | **‘)’** | **‘,’** | **‘;’** | **‘+’** | **‘-‘** | **':='**<br>
 identifier: A sequence of letters, digits, and underscore (‘_’) not starting with a digit or a symbol.<br>
 integerConstant: A decimal number<br>
 
