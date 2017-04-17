@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Tokenizer
 {
     private Scanner sc;
-    ArrayList<String> tokens;
+    private ArrayList<String> tokens;
     
     public Tokenizer(Scanner sc) 
     {
