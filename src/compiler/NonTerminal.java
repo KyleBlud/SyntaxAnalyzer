@@ -1,24 +1,24 @@
 package compiler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
 public class NonTerminal
 {
-    Map<String, Stack<String>> productions;
+    Map<String, ArrayList<String>> productions;
     
     public NonTerminal()
     {
         productions = new HashMap<>();
     }
     
-    public void addProduction(String terminal, Stack<String> production)
+    public void addProduction(String terminal, ArrayList<String> production)
     {
         productions.put(terminal, production);
     }
     
-    public Stack<String> getProduction(String terminal)
+    public ArrayList<String> getProduction(String terminal)
     {
         return productions.get(terminal);
     }
