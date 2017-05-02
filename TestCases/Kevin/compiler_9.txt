@@ -1,0 +1,5 @@
+BEGIN
+a := a +- 10;
+read(b,c);
+write(a + (b-c));
+END

@@ -1,0 +1,9 @@
+BEGIN
+READ(a, b, c, d);
+e := 67;
+READ(f, j, l);
+WRITE(a, b, c, d, e, f, j, l);
+d:= a + f - l;
+l := d - a -f;
+WRITE(a, b, c, d, e, f, j, l)
+END

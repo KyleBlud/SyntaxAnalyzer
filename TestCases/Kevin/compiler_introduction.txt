@@ -1,0 +1,1 @@
+The first five should compile properly, while the last five should break.

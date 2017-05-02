@@ -1,0 +1,11 @@
+WRITE
+READ(x, y, z);
+WRITE(x, z, y, y);
+a := 00;
+b := 90;
+c := 100000000;
+d := c - a;
+e := b + a;
+WRITE(a, b, a, a, c, d, e, y, x);
+WRITE(a, a, a);
+END

@@ -1,0 +1,10 @@
+BEGIN
+READ(a, b, c, d, e);
+WRITE(a, b, c, d, e);
+temp := a;
+a:= e;
+e:= temp;
+temp := b;
+b:= d;
+d:= temp;
+WRITE(a, b, c, d, e);

@@ -1,0 +1,10 @@
+BEGIN
+read(a, b);
+WRITE(a-b, 10, b, b);
+b := a + a;
+a := a;
+c := b + a;
+WRITE(b, a, c, c);
+c := a*c;
+Write (a, c, b, b);
+END

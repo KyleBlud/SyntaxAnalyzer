@@ -1,0 +1,8 @@
+BEGIN
+READ(a, b, c);
+d:= 0;
+WRITE(d, a, b, c);
+READ(n, t, m);
+WRITE (n, a, d, n, a, d);
+WRITE(b, a, t, m, a, n);
+END

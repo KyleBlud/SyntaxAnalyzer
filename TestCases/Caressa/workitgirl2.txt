@@ -1,0 +1,9 @@
+BEGIN
+READ(x, y, z);
+a := 70;
+b := 3;
+c := 60;
+c := c - a;
+WRITE(a, b, c);
+WRITE(x, y, z);
+END

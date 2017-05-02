@@ -22,4 +22,9 @@ public class NonTerminal
     {
         return productions.get(terminal);
     }
+    
+    public boolean hasProduction(String terminal)
+    {
+        return productions.containsKey(terminal);
+    }
 }

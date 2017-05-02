@@ -5,26 +5,28 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Parser
 {
-    Map<String, NonTerminal> parseMap;
-    ArrayList<String> tokens;
-    Stack<String> stack;
+    private Map<String, NonTerminal> parseMap;
+    private ArrayList<Token> tokens;
+    private Stack<String> stack;
     
     public Parser(File programFile) throws FileNotFoundException
     {
         parseMap = new HashMap<>();
-        tokens = new ArrayList<>();
         stack = new Stack<>();
+        
+        Tokenizer t = new Tokenizer(new Scanner(programFile));
+        tokens = t.getTokens();
 
         mapProductions();
         pushStartingStateToStack();
-        algorithm();
     }
     
-    private void algorithm()
+    public String algorithm()
     {
         String topOfStack;
         String currToken;
@@ -33,17 +35,30 @@ public class Parser
         while (i < tokens.size())
         {
             topOfStack = stack.peek();
-            currToken = tokens.get(i);
+            currToken = tokens.get(i).token;
             if (isNonTerminal(topOfStack))
             {
-                production = parseMap.get(topOfStack).getProduction(currToken);
-                stack.pop();
-                if (production != null)
+                if (parseMap.get(topOfStack).hasProduction(currToken))
                 {
-                    for (int j = production.size() - 1; j >= 0; j--)
+                    production = parseMap.get(topOfStack).getProduction(currToken);
+                    stack.pop();
+                    if (production != null)
                     {
-                        stack.push(production.get(j));
+                        for (int j = production.size() - 1; j >= 0; j--)
+                        {
+                            stack.push(production.get(j));
+                        }
                     }
+                }
+                else
+                {
+                    if (isIllegalIdentifier(currToken))
+                    {
+                        return "Error on line " + tokens.get(i).lineNum + 
+                               ": illegal identifier.";
+                    }
+                    return "Error on line " + tokens.get(i).lineNum +
+                           ": illegal start of " + parseMap.get(topOfStack);
                 }
             }
             else if (topOfStack.equals(currToken))
@@ -53,10 +68,16 @@ public class Parser
             }
             else
             {
-                // return "Error: expected topOfStack inplace of currToken"
+                return "Error on line "+ tokens.get(i).lineNum +": expected '" + 
+                        topOfStack + "' inplace of '" + currToken + "'.";
             }
         }
-        // return "Congratulations, there were no errors found."
+        return "Congratulations, there were no errors found.";
+    }
+    
+    private boolean isIllegalIdentifier(String s)
+    {
+        return s.equals("ilid");
     }
     
     private boolean isNonTerminal(String s)
@@ -157,7 +178,7 @@ public class Parser
         parseMap.put(exprListTail, new NonTerminal());
         production = new ArrayList<>();
         production.add(",");
-        production.add(identList);
+        production.add(exprList);
         parseMap.get(exprListTail).addProduction(",", production);
         parseMap.get(exprListTail).addProduction(")", null);
         // <expr>
@@ -177,6 +198,7 @@ public class Parser
         parseMap.get(exprTail).addProduction("-", production);
         parseMap.get(exprTail).addProduction(";", null);
         parseMap.get(exprTail).addProduction(")", null);
+        parseMap.get(exprTail).addProduction(",", null);
         // <factor>
         parseMap.put(factor, new NonTerminal());
         production = new ArrayList<>();

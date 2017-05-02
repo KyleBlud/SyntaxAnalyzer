@@ -1,0 +1,7 @@
+BEGIN
+a:= 0;
+READ(x, y, z);
+WRITE(x, a, z, q);
+READ(q);
+WRITE(x, a, z, q);
+END

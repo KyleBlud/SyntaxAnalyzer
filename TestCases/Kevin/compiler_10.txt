@@ -1,0 +1,24 @@
+BEGIN
+read(a,b,c);
+write (a-(1+b), 12, a, b, c);
+s_1 := (a) + 13;
+s_2 := (b) + (c);
+read(d,e,f);
+write (d-(1+e), 20, d, e, f);
+s_3 := (e) + (f);
+s_4 := (d);
+read(g,h,i);
+write (g-(1+h), 12, g, h, i);
+s_5 := (a) + (b) + (c) + (d) + (e) + (f) + (g) + (h) + (i);
+s_6 := 10 + (i);
+read(j,k);
+write (a+(j+k), 9, 1, k);
+s_7 := (j) + 13;
+s_8 := (k) + 4;
+read(l,m);
+write (a-2+(1+m), 15, l, m);
+s_9 := (l) + 13;
+s_10 := (l) + (m);
+read(x,y,z);
+write(x, y, x);
+s_11 := (x) & (y) & (z)

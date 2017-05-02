@@ -1,0 +1,7 @@
+BEGIN
+READ(x, y);
+a := 05;
+WRITE(x, a, y);
+b := 0;
+WRITE(b, b, a);
+END

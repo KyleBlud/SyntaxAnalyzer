@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class UI extends javax.swing.JFrame {
@@ -15,6 +16,7 @@ public class UI extends javax.swing.JFrame {
      */
     public UI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /*
@@ -29,6 +31,8 @@ public class UI extends javax.swing.JFrame {
         uploadFileButton = new javax.swing.JButton();
         fileNameLabel = new javax.swing.JLabel();
         resultsPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultsTextPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,15 +63,23 @@ public class UI extends javax.swing.JFrame {
 
         resultsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Results"));
 
+        resultsTextPane.setEditable(false);
+        jScrollPane1.setViewportView(resultsTextPane);
+
         javax.swing.GroupLayout resultsPanelLayout = new javax.swing.GroupLayout(resultsPanel);
         resultsPanel.setLayout(resultsPanelLayout);
         resultsPanelLayout.setHorizontalGroup(
             resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(resultsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         resultsPanelLayout.setVerticalGroup(
             resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 96, Short.MAX_VALUE)
+            .addGroup(resultsPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,6 +113,7 @@ public class UI extends javax.swing.JFrame {
         chooser.setFileFilter(filter);
 
         int returnVal;
+        String parseResults;
         boolean correctFileType = false;
         while (!correctFileType)
         {
@@ -114,14 +127,9 @@ public class UI extends javax.swing.JFrame {
                     fileNameLabel.setText(programFile.getName());
                     try
                     {
-                        /*
-                        When the tokenizer is finished, replace this line 
-                        with the parser and pass the file to the parser. 
-                        The parser will then pass the file as a scanner
-                        object to the tokenizer. The tokenizer will then return
-                        an array of tokens.
-                        */
-                        t = new Tokenizer(new Scanner(programFile));
+                        Parser p = new Parser(programFile);
+                        parseResults = p.algorithm();
+                        resultsTextPane.setText(parseResults);
                     }
                     catch (Exception e)
                     {
@@ -177,7 +185,9 @@ public class UI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fileNameLabel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel resultsPanel;
+    private javax.swing.JTextPane resultsTextPane;
     private javax.swing.JButton uploadFileButton;
     private javax.swing.JPanel uploadFilePanel;
     // End of variables declaration//GEN-END:variables

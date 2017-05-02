@@ -1,0 +1,12 @@
+BEGIN
+READ(a);
+b:= a;
+READ(c);
+d := e;
+WRITE(a, c, b, d);
+c:= d;
+WRITE(a, c, b, d);
+READ(x);
+WRITE(x, a, a, a, x);
+WRITE(x, a - c, x);
+END

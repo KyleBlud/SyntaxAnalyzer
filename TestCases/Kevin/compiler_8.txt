@@ -1,0 +1,5 @@
+BEGIN
+read(a,b,c,d,e,f,g,h,i);
+write (a-(1+b), 12, g, h, i);
+s_1 := (a) + (b) + (c) + (d) + (e) + (f) + (g) + (h) + (i),
+END

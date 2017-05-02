@@ -1,0 +1,8 @@
+BEGIN
+READ (a, b, c);
+d := 10;
+WRITE (a, d, b, d, c, 10);
+d := 0;
+ac := 10;
+WRITE (a c, d, b, d, c, 10);
+END

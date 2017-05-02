@@ -1,0 +1,6 @@
+BEGIN
+read(a,b,c);
+write (a-(1+b), 12, a, b; c);
+s_1 := (a) + 13;
+s_2 := (b) + (c);
+END
